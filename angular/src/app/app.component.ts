@@ -9,6 +9,7 @@ import { KeycloakProfile } from 'keycloak-js';
 export class AppComponent implements OnInit {
   public isLoggedIn = false;
   public userProfile: KeycloakProfile | null = null;
+  public tokenValue: string | null = null;
 
   constructor(private readonly keycloak: KeycloakService) {}
 
@@ -17,8 +18,7 @@ export class AppComponent implements OnInit {
 
     if (this.isLoggedIn) {
       this.userProfile = await this.keycloak.loadUserProfile();
-      console.error("this.userProfile");
-      console.error(this.userProfile);
+      this.tokenValue = await this.keycloak.getToken();
     }
   }
 
@@ -28,5 +28,9 @@ export class AppComponent implements OnInit {
 
   public logout() {
     this.keycloak.logout();
+  }
+
+  public getToken() {
+    this.keycloak.getToken();
   }
 }
