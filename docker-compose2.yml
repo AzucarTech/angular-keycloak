@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+    keycloak:
+      image: jboss/keycloak:16.1.0
+      ports:
+        - 8080:8080
+      restart: unless-stopped
+      environment:
+        # User and password for the Administration Console
+        KEYCLOAK_USER: admin
+        KEYCLOAK_PASSWORD: admin
+        DB_VENDOR: mysql
+        DB_ADDR: mysql
+        DB_PORT: 3306
+        # Same values as the mysql service
+        DB_USER: keycloak_user
+        DB_PASSWORD: keycloak_password
+        DB_DATABASE: keycloak_db
+        KEYCLOAK_IMPORT: /tmp/realm-keycloak-angular-sandbox.json
+      depends_on:
+        - mysql
+      networks:
+        - keycloak-and-mysql-network
+
+networks:
+  keycloak-and-mysql-network:
