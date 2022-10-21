@@ -34,7 +34,6 @@ services:
         DB_USER: keycloak_user
         DB_PASSWORD: keycloak_password
         DB_DATABASE: keycloak_db
-        KEYCLOAK_IMPORT: /tmp/realm-keycloak-angular-sandbox.json
       depends_on:
         - mysql
       networks:
