@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { NgModule,  APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { AppRoutingModule } from './app-routing.module';
@@ -8,9 +8,9 @@ function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
     keycloak.init({
       config: {
-        url: 'http://10.7.0.110.nip.io/auth',
-        realm: 'keycloak-angular-sandbox',
-        clientId: 'keycloak-angular'
+        url: `http://10.7.0.110.nip.io/auth`,
+        realm: 'angular',
+        clientId: 'angular-frontend'
       },
       initOptions: {
         onLoad: 'check-sso',
@@ -21,8 +21,14 @@ function initializeKeycloak(keycloak: KeycloakService) {
 }
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [AppRoutingModule, BrowserModule, KeycloakAngularModule],
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    KeycloakAngularModule,
+    AppRoutingModule
+  ],
   providers: [
     {
       provide: APP_INITIALIZER,
@@ -33,4 +39,4 @@ function initializeKeycloak(keycloak: KeycloakService) {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

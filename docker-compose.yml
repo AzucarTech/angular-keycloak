@@ -43,16 +43,16 @@ services:
       volumes:
         - ./keycloak/config/realm-keycloak-angular-sandbox.json:/tmp/realm-keycloak-angular-sandbox.json
 
-    angular:
-      restart: unless-stopped
-      build:
-          context: ./angular
-      ports:
-        - "3000:3000"
-      depends_on:
-        - keycloak
-      networks:
-        - keycloak-and-mysql-network
+    # angular:
+    #   restart: unless-stopped
+    #   build:
+    #       context: ./angular
+    #   ports:
+    #     - "3000:3000"
+    #   depends_on:
+    #     - keycloak
+    #   networks:
+    #     - keycloak-and-mysql-network
         
     nginx:
       restart: unless-stopped
@@ -60,8 +60,8 @@ services:
         context: ./nginx
       ports:
         - "80:80"
-      depends_on:
-        - angular
+      # depends_on:
+      #   - angular
       networks:
         - keycloak-and-mysql-network
 
