@@ -10,6 +10,7 @@ export class AppComponent implements OnInit {
   public isLoggedIn = false;
   public userProfile: KeycloakProfile | null = null;
   public tokenValue: string | null = null;
+  public userRoles: any | null = null;
 
   constructor(private readonly keycloak: KeycloakService) {}
 
@@ -19,6 +20,7 @@ export class AppComponent implements OnInit {
     if (this.isLoggedIn) {
       this.userProfile = await this.keycloak.loadUserProfile();
       this.tokenValue = await this.keycloak.getToken();
+      this.userRoles = await this.keycloak.getUserRoles();
     }
   }
 
