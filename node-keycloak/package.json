@@ -1,0 +1,63 @@
+{
+  "name": "@fourinc/node-keycloak",
+  "version": "3.0.2",
+  "description": "Keycloak admin bulk user administration",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run clean && npm run pack",
+    "clean": "rm -rf build",
+    "compile": "tsc --project src/tsconfig.json",
+    "dev": "ts-node ./tests/dev.ts",
+    "test": "mocha ./tests/test-helper.js --config tests/.mocharc.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.2.3",
+    "@types/chai-as-promised": "^7.1.2",
+    "@types/chai-things": "0.0.34",
+    "@types/lodash": "^4.14.168",
+    "@types/mocha": "^8.2.1",
+    "@types/node": "^18.7.5",
+    "@types/sinon": "^9.0.10",
+    "@types/sinon-chai": "^3.2.3",
+    "@types/uuid": "^8.3.0",
+    "@typescript-eslint/eslint-plugin": "^4.21.0",
+    "@typescript-eslint/parser": "^4.21.0",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "chai-things": "^0.2.0",
+    "eslint": "^7.23.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "ignore-loader": "^0.1.2",
+    "lerna": "^4.0.0",
+    "mocha": "^8.3.0",
+    "nyc": "^15.1.0",
+    "prettier": "^2.2.1",
+    "sinon": "^11.1.0",
+    "sinon-chai": "^3.5.0",
+    "ts-loader": "^8.1.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.3.2",
+    "webpack": "^5.28.0",
+    "webpack-cli": "^4.6.0",
+    "zip-webpack-plugin": "^4.0.1"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1195.0",
+    "axios": "^0.21.2",
+    "axios-retry": "^3.3.1",
+    "csv": "^6.2.1",
+    "csv-parser": "^3.0.0"
+  },
+  "nyc": {
+    "extends": "@istanbuljs/nyc-config-typescript",
+    "include": "src/**",
+    "reporter": [
+      "lcov",
+      "html"
+    ]
+  }
+}
