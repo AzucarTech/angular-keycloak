@@ -1,8 +1,5 @@
 import { Keycloak, User, readCSV } from "./lib";
 
-// constants
-const defaultRole = "auditor_client";
-
 // Used to track the relevant headers from the CSV file and it's corresponding keycloak field name.
 export enum FieldMappings {
   firstName = "First Name",
@@ -12,7 +9,14 @@ export enum FieldMappings {
   enabled = "User Status (Description)",
 }
 
-export async function main(username: string, password: string, realm: string, client: string, csvFile: string) {
+export async function main(
+  username: string,
+  password: string,
+  realm: string,
+  client: string,
+  initRole: string,
+  csvFile: string
+) {
   // Get a map with each CSV column header as the corresponding key
   const csvContent = await readCSV(csvFile);
 
@@ -43,7 +47,7 @@ export async function main(username: string, password: string, realm: string, cl
 
   for (const user of users) {
     // assign all the users the appropriate client role(s)
-    await keycloak.UserRoleMappings(user, defaultRole);
+    await keycloak.UserRoleMappings(user, initRole);
 
     // send all users that have not yet been verified a verification email
     if (!user.emailVerified){
