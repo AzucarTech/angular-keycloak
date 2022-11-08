@@ -1,7 +1,7 @@
 import axios from "axios";
 import { User } from "./"
 
-const baseUrl = "https://fourtresssoftware.com/auth";
+const baseUrl = "http://10.7.0.110.nip.io/auth";
 
 export async function authKeycloak(username: string, password: string) {
   return axios({

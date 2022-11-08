@@ -1,5 +1,5 @@
 {
-  "name": "@fourinc/node-keycloak",
+  "name": "@azucartech/node-keycloak",
   "version": "3.0.2",
   "description": "Keycloak admin bulk user administration",
   "main": "index.js",
